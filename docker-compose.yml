@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    container_name: beneficios-backend
+    ports:
+      - "5000:5000"
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:5000
+    container_name: beneficios-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
